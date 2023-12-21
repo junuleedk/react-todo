@@ -10,6 +10,18 @@ export default function TodoItem({ todo, todos, setTodos }) {
       })
     );
   }
+  // todos배열요소 모두(t)에서 todo.id가 다른 요소로
+  // 새로운 배열 생성하여 setTodos로 todos배열 업데이트
+  // todos배열의 모든 요소중 id가 todo.id와 다른 요소로 배열 업데이트
+  function handleRemove() {
+    setTodos(
+      // todos.filter((t) => {
+      //   return t.id !== todo.id;
+      // })
+      // return 생략하고 싶으면 중괄호도 빼야한다.
+      todos.filter((t) => t.id !== todo.id)
+    );
+  }
 
   return (
     <li className={styles.todo_item}>
@@ -18,7 +30,9 @@ export default function TodoItem({ todo, todos, setTodos }) {
       <label className={todo.done === true ? styles.done : ''} htmlFor={`check${todo.id}`} onClick={handleDone}>
         {todo.text}
       </label>
-      <button type="button">remove</button>
+      <button type="button" onClick={handleRemove}>
+        remove
+      </button>
     </li>
   );
 }
